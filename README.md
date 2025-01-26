@@ -178,8 +178,70 @@ public:
 - The resulting linked list represents the sum in reverse order.
 
 ---
+## 3. DSA Question: **283. Move Zeroes**
 
-## 3. DBMS Question: **595. Big Countries**
+**Platform:** LeetCode
+
+### Problem Statement
+Given an integer array `nums`, the goal is to move all `0`s to the end of the array while maintaining the relative order of the non-zero elements. The solution must be done in-place, meaning you cannot create a copy of the array.
+
+### Examples
+#### Example 1:
+**Input:**
+```cpp
+nums = [0,1,0,3,12]
+```
+**Output:**
+```cpp
+[1,3,12,0,0]
+```
+
+#### Example 2:
+**Input:**
+```cpp
+nums = [0]
+```
+**Output:**
+```cpp
+[0]
+```
+
+### Constraints:
+- `1 <= nums.length <= 10^4`
+- `2^31 <= nums[i] <= 2^31 - 1`
+
+### Solution Code
+#### C++ Implementation:
+```cpp
+class Solution {
+public:
+    void moveZeroes(vector<int>& nums) {
+        int index=0;
+        for(int i=0;i<nums.size();i++){
+            if(nums[i]!=0){
+                nums[index]=nums[i];
+                index++;
+            }
+        }
+        for(int j=index;j<nums.size();j++){
+            nums[j]=0;
+        }
+    }
+};
+```
+
+### Explanation
+
+The solution follows a two-step approach:
+1. **Move non-zero elements to the front**: We traverse the list, and whenever we find a non-zero element, we place it at the `index` position and increment `index`.
+2. **Fill the remaining positions with zeros**: After placing all non-zero elements, the remaining positions from `index` to the end of the list are filled with zeros.
+
+- **First loop**: Iterates through the array to place all non-zero elements at the beginning of the array. The variable `index` tracks the position for the next non-zero element.
+- **Second loop**: After the first loop, all elements from `index` to the end of the array are set to zero.
+
+---
+
+## DBMS Question: **595. Big Countries**
 
 **Platform:** LeetCode
 
@@ -213,7 +275,6 @@ Write a SQL query to find the **name, population, and area** of the big countrie
 ```
 
 ### Solution Code
-#### SQL Query:
 ```sql
 SELECT name, population, area
 FROM World
@@ -223,3 +284,53 @@ WHERE area >= 3000000 OR population >= 25000000;
 ### Explanation
 - This query selects the `name`, `population`, and `area` columns.
 - It filters countries based on the given conditions using the `WHERE` clause.
+
+---
+
+
+## OOPS Question: Implement Circle
+
+**Platform:** w3resource
+
+### Problem Statement
+Write a C++ program to implement a class called Circle that has private member variables for radius. Include member functions to calculate the circle's area and circumference.### Example
+
+### Solution Code
+```cpp
+#include <iostream> 
+#include <cmath> 
+#define PI = 3.14159; 
+using namespace std;
+
+class Circle { 
+  private: 
+    double radius; 
+  public:
+    Circle(double rad): radius(rad) {}
+    double Area() {
+      return PI*pow(radius,2);
+    }
+    double Circumference() {
+      return 2*PI*radius; 
+    }
+};
+
+int main() {
+  double radius;
+  cin>>radius;
+  Circle circle(radius);
+  cout<<circle.Area()<<" "<<circle.Circumference()<<endl;
+  return 0; 
+}
+```
+
+### Explanation
+- A Circle class is created with a private member variable radius to store the radius of the circle.
+- The constructor Circle(double rad) initializes the circle's radius using the value provided when an object is created.
+- The Area() method calculates the area of the circle using the formula π*r^2, where r is the radius, and the value of π is predefined.
+- The Circumference() method calculates the circumference using the formula 2×π×r.
+- In the main() function, the user inputs the radius, a Circle object is created with that radius, and the program then prints the circle's area and circumference.
+---
+
+
+
